@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerador de Ondas & Paisagens Sonoras · Alta Performance</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js"></script>
+</head>
+<body>
+
+    <div class="app-container">
+
+        <!-- ===== COLUNA PRINCIPAL ===== -->
+        <div>
+
+            <!-- CARD: GERADOR -->
+            <div class="card">
+
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                    <div>
+                        <h1>🎧 Gerador de Ondas & Natureza</h1>
+                        <div class="subtitle">Síntese matemática · Áudio limpo e agradável</div>
+                    </div>
+                    <span class="dur-badge" id="durationBadge">⏱ 5 min</span>
+                </div>
+
+                <div class="control-group">
+                    <div class="field">
+                        <label for="waveSelect">🌊 Selecione o Áudio</label>
+                        <select id="waveSelect"></select>
+                    </div>
+                    <div class="field">
+                        <label>⏳ Duração</label>
+                        <div class="time-buttons" id="timeButtons">
+                            <button class="time-btn active" data-minutes="5">5 min</button>
+                            <button class="time-btn" data-minutes="30">30 min</button>
+                            <button class="time-btn" data-minutes="60">1 h</button>
+                            <button class="time-btn" data-minutes="120">2 h</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-row">
+                    <button class="btn btn-primary" id="btnGenerate">▶ Gerar Faixa</button>
+                    <button class="btn btn-gold" id="btnDownload" disabled>⬇ Baixar</button>
+                    <button class="btn btn-outline btn-danger" id="btnClear">✕ Limpar</button>
+                </div>
+
+                <div class="progress-wrap" id="progressWrap">
+                    <div class="progress-label">
+                        <span id="progressText">Renderizando...</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="fill" id="progressFill"></div>
+                    </div>
+                </div>
+
+                <div class="status-msg" id="statusMsg">⏎ Selecione uma opção e clique em "Gerar Faixa"</div>
+
+                <div class="player-wrap" id="playerWrap">
+                    <audio id="audioPlayer" controls></audio>
+                    <div class="player-info">
+                        <span id="playerLabel">Prévia</span>
+                        <span id="playerDuration">—</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CARD: MENTOR AI -->
+            <div class="card" style="margin-top:20px;">
+                <h2>🧠 Mentor Neuro-Musical IA <span class="badge">simulado</span></h2>
+                <div class="mentor-box" id="mentorBox">
+                    <div class="mentor-header">
+                        <span class="icon">✨</span>
+                        <span>Análise do Áudio Selecionado</span>
+                    </div>
+                    <div class="mentor-content" id="mentorContent">
+                        <span class="placeholder">Selecione uma opção no menu acima para receber insights.</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ===== COLUNA LATERAL ===== -->
+        <div>
+
+            <div class="card">
+                <h2>📋 Lista de Áudios</h2>
+                <div style="font-size:13px; line-height:1.7; color:#b0b8d0; max-height:420px; overflow-y:auto; padding-right:6px;" id="waveList"></div>
+            </div>
+
+            <div class="card" style="margin-top:16px;">
+                <h2>⚙️ Engine</h2>
+                <div style="font-size:13px; color:#8a8fa8; line-height:1.6;">
+                    <div>🔊 Sample Rate: <strong style="color:#e8e6f0;">44.100 Hz</strong></div>
+                    <div>🔊 Canais: <strong style="color:#e8e6f0;">Estéreo (2)</strong></div>
+                    <div>🔊 Render: <strong style="color:#e8e6f0;">OfflineAudioContext</strong></div>
+                    <div>🔊 Codificação: <strong style="color:#e8e6f0;">WAV · MP3 (LameJS)</strong></div>
+                    <div style="margin-top:8px; font-size:12px; color:#6a6f8a;">
+                        ⚡ Geração em poucos segundos.<br />
+                        Áudio limpo, sem ruídos indesejados.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ===== MODAL DE DOWNLOAD ===== -->
+    <div class="modal-overlay" id="downloadModal">
+        <div class="modal-card">
+            <h3>⬇️ Escolha o formato</h3>
+            <div style="display:flex; gap:12px; margin-top:16px; justify-content:center; flex-wrap:wrap;">
+                <button class="btn btn-gold" id="modalWav" style="min-width:100px;">WAV</button>
+                <button class="btn btn-gold" id="modalMp3" style="min-width:100px;">MP3</button>
+                <button class="btn btn-outline" id="modalCancel" style="min-width:100px;">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
